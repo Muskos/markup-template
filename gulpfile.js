@@ -13,12 +13,7 @@ var gulp = require('gulp'),
 
 var banner = [
   '/*!\n' +
-  ' * <%= package.name %>\n' +
-  ' * <%= package.title %>\n' +
-  ' * <%= package.url %>\n' +
-  ' * @author <%= package.author %>\n' +
-  ' * @version <%= package.version %>\n' +
-  ' * Copyright ' + new Date().getFullYear() + '. <%= package.license %> licensed.\n' +
+  ' * @author Aleksey Makas\n' +
   ' */',
   '\n'
 ].join('');
@@ -31,7 +26,7 @@ gulp.task('css', function () {
     .pipe(gulp.dest('app/assets/css'))
     .pipe(cssnano())
     .pipe(rename({ suffix: '.min' }))
-    // .pipe(header(banner, { package : package }))
+    .pipe(header(banner))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('app/assets/css'))
     .pipe(browserSync.reload({stream:true}));
@@ -42,10 +37,10 @@ gulp.task('js',function(){
     .pipe(sourcemaps.init())
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('default'))
-    // .pipe(header(banner, { package : package }))
+    .pipe(header(banner))
     .pipe(gulp.dest('app/assets/js'))
     .pipe(uglify())
-    // .pipe(header(banner, { package : package }))
+    .pipe(header(banner))
     .pipe(rename({ suffix: '.min' }))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('app/assets/js'))
@@ -64,7 +59,7 @@ gulp.task('bs-reload', function () {
 });
 
 gulp.task('default', ['css', 'js', 'browser-sync'], function () {
-    gulp.watch("src/scss/*/*.scss", ['css']);
+    gulp.watch("src/scss/**/*.scss", ['css']);
     gulp.watch("src/js/*.js", ['js']);
     gulp.watch("app/*.html", ['bs-reload']);
 });

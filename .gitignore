@@ -13,14 +13,24 @@ results
 npm-debug.log
 node_modules
 
+## cache directories
+Thumbs.db
+*.DS_Store
+*.empty
+
+## phpstorm project files
+.idea
+
+## netbeans project files
+nbproject
+
 ## Bower
 src/components
 
-## Sass
-.sass-cache
+## sass cache files
+*.sass-cache
 
 ## OS X
-.DS_Store
 .AppleDouble
 .LSOverride
 Icon
@@ -29,7 +39,19 @@ Icon
 .Trashes
 
 ## Windows
-Thumbs.db
 ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
+
+#eclipse, zend studio, aptana or other eclipse like project files
+.buildpath
+.project
+.settings
+
+## compiled
+dist
+app
+
+## else
+app/components
+app/scripts/files.js

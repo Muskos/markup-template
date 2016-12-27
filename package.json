@@ -1,0 +1,35 @@
+{
+  "name": "ad-template",
+  "version": "0.0.1",
+  "description": "ad-template Front-End developer kit",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Muskos/template.git"
+  },
+  "keywords": [],
+  "author": "Muskos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Muskos/template/issues"
+  },
+  "homepage": "https://github.com/Muskos/template#readme",
+  "devDependencies": {
+    "browser-sync": "^2.12.5",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-favicons": "^2.2.7",
+    "gulp-header": "^1.8.8",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.1",
+    "gulp-sass-glob": "^1.0.6",
+    "gulp-uglify": "^1.5.3",
+    "gulp.spritesmith": "^6.2.1"
+  },
+  "dependencies": {}
+}

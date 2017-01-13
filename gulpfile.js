@@ -1,14 +1,15 @@
-var gulp = require('gulp'),
-    sass = require('gulp-sass'),
-    browserSync = require('browser-sync'),
-    autoprefixer = require('gulp-autoprefixer'),
-    uglify = require('gulp-uglify'),
+var gulp            = require('gulp'),
+    sass            = require('gulp-sass'),
+    browserSync     = require('browser-sync'),
+    autoprefixer    = require('gulp-autoprefixer'),
+    uglify          = require('gulp-uglify'),
     // jshint = require('gulp-jshint'),
-    header  = require('gulp-header'),
-    rename = require('gulp-rename'),
-    cssnano = require('gulp-cssnano'),
-    favicons = require("gulp-favicons/es5"),
-    gulpUtil = require('gulp-util');
+    header          = require('gulp-header'),
+    rename          = require('gulp-rename'),
+    cssnano         = require('gulp-cssnano'),
+    concat          = require('gulp-concat'),
+    favicons        = require("gulp-favicons/es5"),
+    gulpUtil        = require('gulp-util');
     // sourcemaps = require('gulp-sourcemaps');
     // package = require('./package.json');
 
@@ -75,7 +76,6 @@ gulp.task('png-sprite', function () {
     spriteData.img.pipe(gulp.dest('dist/image/'));
     spriteData.css.pipe(gulp.dest('src/scss/tmp/'));
 });
-
 gulp.task('buid-sprite-style', ['png-sprite'],function(){
     return gulp.src([
             'src/scss/tmp/sprite.css'

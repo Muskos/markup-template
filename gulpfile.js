@@ -6,7 +6,9 @@ var gulp = require('gulp'),
     // jshint = require('gulp-jshint'),
     header  = require('gulp-header'),
     rename = require('gulp-rename'),
-    cssnano = require('gulp-cssnano');
+    cssnano = require('gulp-cssnano'),
+    favicons = require("gulp-favicons/es5"),
+    gulpUtil = require('gulp-util');
     // sourcemaps = require('gulp-sourcemaps');
     // package = require('./package.json');
 
@@ -18,6 +20,7 @@ var banner = [
   '\n'
 ].join('');
 
+// sass & css
 gulp.task('css', function () {
     return gulp.src('src/scss/style.scss')
     // .pipe(sourcemaps.init())
@@ -32,14 +35,16 @@ gulp.task('css', function () {
     .pipe(browserSync.reload({stream:true}));
 });
 
+// js
 gulp.task('js',function(){
   gulp.src('src/js/scripts.js')
     // .pipe(sourcemaps.init())
     // .pipe(jshint('.jshintrc'))
     // .pipe(jshint.reporter('default'))
-    .pipe(header(banner))
+    // .pipe(header(banner))
     .pipe(gulp.dest('dist/js'))
     .pipe(uglify())
+    .pipe(concat('script.js'))
     .pipe(header(banner))
     .pipe(rename({ suffix: '.min' }))
     // .pipe(sourcemaps.write())
@@ -47,6 +52,7 @@ gulp.task('js',function(){
     .pipe(browserSync.reload({stream:true, once: true}));
 });
 
+// for frontend developer only
 gulp.task('browser-sync', function() {
     browserSync.init(null, {
         server: {
@@ -59,32 +65,54 @@ gulp.task('bs-reload', function () {
 });
 
 // icon sprite
-gulp.task('sprite', function () {
-    var spriteData = gulp.src('src/img/sprite/*.*')
+gulp.task('png-sprite', function () {
+    var spriteData = gulp.src('src/png-sprite/*.png')
         .pipe(spritesmith({
             imgName: 'sprite.png',
             cssName: 'sprite.css',
-            imgPath: '/dist/img/sprite.png'
+            imgPath: '../image/sprite.png',
         }));
-    spriteData.img.pipe(gulp.dest('dist/img/'));
+    spriteData.img.pipe(gulp.dest('dist/image/'));
     spriteData.css.pipe(gulp.dest('src/scss/tmp/'));
 });
 
-// gulp.task('treba_compile_sprite', ['treba_create_sprite'],function(){
-//     return gulp.src([
-//             'treba/sass/tmp/sprite.css'
-//         ])
-//         .pipe(rename('treba_sprite.scss'))
-//         .pipe(gulp.dest("treba/sass/common/"));
-// });
-gulp.task('copy-html', function () {
-    return gulp.src(['src/html/index.html'], {
-        base: 'src/html'
-    }).pipe(gulp.dest('dist'));
+gulp.task('buid-sprite-style', ['png-sprite'],function(){
+    return gulp.src([
+            'src/scss/tmp/sprite.css'
+        ])
+        .pipe(rename('sprite.scss'))
+        .pipe(gulp.dest("src/scss/common/"));
 });
 
-gulp.task('default', ['copy-html', 'css', 'js', 'browser-sync'], function () {
+gulp.task("favicon", function () {
+    return gulp.src("src/favicon/favicon.png").pipe(favicons({
+        appName: "Эргамин-Фит Профессиональное питание для спортсменов",
+        appDescription: "Эргамин-Фит Профессиональное питание для спортсменов",
+        developerName: "imwell.im",
+        developerURL: "http://imwell.im/",
+        background: "#fff",
+        lang: "ru-RU",
+        path: "/favicon/",
+        url: "http://imwell.im/",
+        display: "standalone",
+        orientation: "portrait",
+        start_url: "/?homescreen=1",
+        version: 1.0,
+        logging: false,
+        online: false,
+        html: "index.html",
+        pipeHTML: true,
+        replace: true
+    }))
+    .on("error", gulpUtil.log)
+    .pipe(gulp.dest("dist/favicon/"));
+});
+
+gulp.task('default', ['css', 'js', 'browser-sync'], function () {
     gulp.watch("src/scss/**/*.scss", ['css']);
     gulp.watch("src/js/*.js", ['js']);
-    gulp.watch("app/*.html", ['bs-reload']);
+    gulp.watch("src/png-sprite/*.png", ['buid-sprite-style'])
+    gulp.watch("*.html", ['bs-reload']);
 });
+
+gulp.task('production', ['buid-sprite-style', 'css', 'js']);

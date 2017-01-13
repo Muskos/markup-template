@@ -1,5 +1,6 @@
 var gulp            = require('gulp'),
     sass            = require('gulp-sass'),
+    connect = require('gulp-connect-php'),
     browserSync     = require('browser-sync'),
     autoprefixer    = require('gulp-autoprefixer'),
     uglify          = require('gulp-uglify'),
@@ -55,11 +56,16 @@ gulp.task('js',function(){
 
 // for frontend developer only
 gulp.task('browser-sync', function() {
-    browserSync.init(null, {
-        server: {
-            baseDir: "dist"
-        }
+    connect.server({}, function (){
+    browserSync({
+            proxy: '127.0.0.1:8000'
+        });
     });
+    // browserSync.init(null, {
+    //     server: {
+    //         baseDir: "./"
+    //     }
+    // });
 });
 gulp.task('bs-reload', function () {
     browserSync.reload();

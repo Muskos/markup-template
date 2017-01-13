@@ -24,6 +24,7 @@
     "gulp-autoprefixer": "^3.1.0",
     "gulp-cached": "^1.1.0",
     "gulp-concat": "^2.6.1",
+    "gulp-connect-php": "0.0.8",
     "gulp-cssnano": "^2.1.2",
     "gulp-favicons": "^2.2.7",
     "gulp-header": "^1.8.8",

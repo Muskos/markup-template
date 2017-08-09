@@ -1,4 +1,4 @@
-const paths = {
+export default {
   baseSrc: './src',
   baseDist: './dist',
 

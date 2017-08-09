@@ -35,23 +35,6 @@ require('require-dir')('./gulp/tasks', { recurse: true });
 //     .pipe(browserSync.reload({stream: true, once: true}));
 // });
 //
-// // for frontend developer only
-// gulp.task('browser-sync', () => {
-//   connect.server({}, () => {
-//     browserSync({
-//       proxy: '127.0.0.1:8000'
-//     });
-//   });
-//   browserSync.init(null, {
-//     server: {
-//       baseDir: "./"
-//     }
-//   });
-// });
-// gulp.task('bs-reload', () => {
-//   browserSync.reload();
-// });
-//
 // // icon sprite
 // gulp.task('png-sprite', () => {
 //   const spriteData = gulp.src('src/png-sprite/*.png')

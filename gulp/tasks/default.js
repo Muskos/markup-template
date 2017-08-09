@@ -17,7 +17,7 @@ gulp.task('default', () => {
       // 'static',
       // 'favicon'
     ],
-    // 'livereload',
+    'livereload',
     'watch'
   );
 });

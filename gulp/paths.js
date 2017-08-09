@@ -1,4 +1,4 @@
-var paths = {
+const paths = {
   baseSrc: './src',
   baseDist: './dist',
 
@@ -11,7 +11,7 @@ var paths = {
     svg: './src/svg',
     scripts: './src/js',
     layouts: './src/layouts',
-    fonts: './src/fonts',
+    fonts: './src/fonts'
   },
 
   dist: {

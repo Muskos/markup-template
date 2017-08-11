@@ -4,7 +4,12 @@ import runSequence from 'run-sequence';
 gulp.task('default', () => {
   runSequence(
     [
-      'scss'
+      'png-sprite',
+      'svg-sprite',
+      'scss',
+      'scripts:compile',
+      'images',
+      'favicon'
     ],
     'livereload',
     'watch'

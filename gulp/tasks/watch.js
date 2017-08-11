@@ -11,9 +11,9 @@ gulp.task('watch', () => {
     runSequence('scss', reload.bind(null, `${paths.dist.styles}/index.css`));
   });
 
-  // watch(`${paths.src.pngsprite}/*.png`, () => {
-  //   runSequence('png-sprite', reload);
-  // });
+  watch(`${paths.src.pngsprite}/*.png`, () => {
+    runSequence('png-sprite', reload);
+  });
   //
   // watch(`${paths.src.svgsprite}/*`, () => {
   //   runSequence('svg-sprite', reload);

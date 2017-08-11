@@ -14,32 +14,16 @@ gulp.task('watch', () => {
   watch(`${paths.src.pngsprite}/*.png`, () => {
     runSequence('png-sprite', reload);
   });
-  //
-  // watch(`${paths.src.svgsprite}/*`, () => {
-  //   runSequence('svg-sprite', reload);
-  // });
-  //
-  // watch([`${paths.baseSrc}/*.php`], () => {
-  //   runSequence('php-files', reload);
-  // });
-  //
-  // watch(`${paths.src.static}/**/*.{png,jpg,gif,svg,mp4,webm}`, () => {
-  //   runSequence('static', reload);
-  // });
-  //
-  // watch(`${paths.src.components}/**/*`, () => {
-  //   runSequence('components', reload);
-  // });
-  //
-  // watch(`${paths.src.fonts}/**/*`, () => {
-  //   runSequence('fonts', reload);
-  // });
-  //
-  // watch(`${paths.src.images}/**/*.{png,jpg,gif,svg}`, () => {
-  //   runSequence('images', reload);
-  // });
-  //
-  // watch(`${paths.src.scripts}/**/*.js`, () => {
-  //   runSequence('scripts:compile');
-  // });
+
+  watch(`${paths.src.svgsprite}/*`, () => {
+    runSequence('svg-sprite', reload);
+  });
+
+  watch(`${paths.src.images}/**/*.{png,jpg,gif,svg}`, () => {
+    runSequence('images', reload);
+  });
+
+  watch(`${paths.src.scripts}/**/*.js`, () => {
+    runSequence('scripts:compile');
+  });
 });

@@ -1,7 +1,6 @@
 import browserSync from 'browser-sync';
 import gulp from 'gulp';
 import gutil from 'gulp-util';
-import paths from '../paths';
 
 gulp.task('livereload', () => {
   browserSync.init({
